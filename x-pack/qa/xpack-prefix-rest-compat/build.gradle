@@ -31,7 +31,7 @@ dependencies {
 }
 
 // copy the already transformed compatible rest tests from the x-pack compatible tests
-tasks.named("copyRestCompatTestTask").configure { task ->
+tasks.matching { it.name == "copyRestCompatTestTask" }.configureEach { task ->
     task.dependsOn(configurations.compatXpackTests);
     task.setXpackConfig(configurations.compatXpackTests);
     task.getIncludeXpack().set(List.of("license", "migration", "ml", "rollup", "sql", "ssl"));
@@ -72,7 +72,7 @@ sourceSets."yamlRestTestV${compatVersion}Compat".resources.compiledBy(copyExtraR
   return dirProp;
 })
 
-tasks.named("processYamlRestTestV${compatVersion}CompatResources").configure {
+tasks.matching { it.name == "processYamlRestTestV${compatVersion}CompatResources" }.configureEach {
   dependsOn("copyExtraResources")
 }
 
