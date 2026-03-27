@@ -12,6 +12,7 @@ package org.elasticsearch.gradle.internal.test.rest.compat.compat;
 import org.elasticsearch.gradle.Version;
 import org.elasticsearch.gradle.VersionProperties;
 import org.elasticsearch.gradle.internal.ElasticsearchJavaBasePlugin;
+import org.elasticsearch.gradle.internal.info.BuildParameterExtension;
 import org.elasticsearch.gradle.internal.info.GlobalBuildInfoPlugin;
 import org.elasticsearch.gradle.internal.test.rest.CopyRestApiTask;
 import org.elasticsearch.gradle.internal.test.rest.CopyRestTestsTask;
@@ -79,12 +80,20 @@ public abstract class AbstractYamlRestCompatTestPlugin implements Plugin<Project
     @Override
     public void apply(Project project) {
         project.getRootProject().getRootProject().getPlugins().apply(GlobalBuildInfoPlugin.class);
-        // Guard against Gradle 9.1+ lazy BuildService initialization: if buildParams are not yet
-        // available at configuration time (e.g. during docker image export), skip compat test setup.
-        if (!loadBuildParams(project).isPresent()) {
+        // Guard against Gradle 9.1+ lazy BuildService initialization: BuildParameterService
+        // parameters may not be accessible at configuration time when running targeted tasks
+        // (e.g. docker image export). If they are unavailable, skip compat test setup entirely.
+        BuildParameterExtension buildParams;
+        try {
+            var buildParamsProperty = loadBuildParams(project);
+            if (!buildParamsProperty.isPresent()) {
+                return;
+            }
+            buildParams = buildParamsProperty.get();
+        } catch (Exception e) {
+            // buildParams not yet available - skip REST compat test setup (safe for docker builds)
             return;
         }
-        var buildParams = loadBuildParams(project).get();
 
         final Path compatRestResourcesDir = Path.of("restResources").resolve("v" + COMPATIBLE_VERSION);
         final Path compatSpecsDir = compatRestResourcesDir.resolve("yamlSpecs");
