@@ -117,7 +117,12 @@ public abstract class AbstractYamlRestCompatTestPlugin implements Plugin<Project
             .stream()
             .filter(v -> v.getMajor() == currentMajor - 1)
             .min(Comparator.reverseOrder())
-            .get();
+            .orElse(null);
+        // If no unreleased previous-major versions exist, REST compat testing is not applicable
+        // (e.g. building a standalone docker image export without BWC version checkout)
+        if (lastMinor == null) {
+            return;
+        }
         String lastMinorProjectPath = buildParams.getBwcVersions().unreleasedInfo(lastMinor).gradleProjectPath();
 
         // copy compatible rest specs
