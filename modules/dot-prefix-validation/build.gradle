@@ -20,7 +20,7 @@ restResources {
   }
 }
 
-tasks.named("yamlRestTestV7CompatTest").configure { enabled = false };
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach { enabled = false };
 
 tasks.named('yamlRestTest') {
   usesDefaultDistribution()

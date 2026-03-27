@@ -59,7 +59,7 @@ tasks.named("yamlRestTest").configure {
   systemProperty 'tests.rest.blacklist', restTestBlacklist.join(',')
 }
 
-tasks.named("yamlRestTestV7CompatTest").configure {
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach {
   systemProperty 'tests.rest.blacklist', [
     'unsigned_long/50_script_values/Scripted sort values',
     'unsigned_long/50_script_values/script_score query',
@@ -234,6 +234,6 @@ tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach({ ta
 })
 
 
-tasks.named('yamlRestTestV7CompatTest').configure {
+tasks.matching { it.name == 'yamlRestTestV7CompatTest' }.configureEach {
   systemProperty 'es.queryable_built_in_roles_enabled', 'false'
 }

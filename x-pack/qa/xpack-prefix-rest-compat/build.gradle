@@ -185,7 +185,7 @@ tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach{ tas
   task.addAllowedWarningRegexForTest(".*_xpack/ssl.* is deprecated.*", "Test get SSL certificates")
 }
 
-tasks.named("yamlRestTestV7CompatTest").configure {
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach {
   systemProperty 'tests.rest.blacklist', [
     'ml/evaluate_data_frame/Test classification auc_roc',
     'ml/evaluate_data_frame/Test classification auc_roc with default top_classes_field',

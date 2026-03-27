@@ -155,5 +155,5 @@ tasks.named("thirdPartyAudit").configure {
 if (buildParams.inFipsJvm) {
   tasks.named("test").configure { enabled = false }
   tasks.named("yamlRestTest").configure { enabled = false };
-  tasks.named("yamlRestTestV7CompatTest").configure { enabled = false };
+  tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach { enabled = false };
 }

@@ -74,7 +74,7 @@ tasks.named("yamlRestTest") {
   usesDefaultDistribution("uses the xpack/usage api")
 }
 
-tasks.named("yamlRestTestV7CompatTest") {
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach {
   usesDefaultDistribution("uses the xpack/usage api")
 }
 

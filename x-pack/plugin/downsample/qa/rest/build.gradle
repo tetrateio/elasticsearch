@@ -29,7 +29,7 @@ artifacts {
 tasks.named('yamlRestTest') {
   usesDefaultDistribution()
 }
-tasks.named('yamlRestTestV7CompatTest') {
+tasks.matching { it.name == 'yamlRestTestV7CompatTest' }.configureEach {
   usesDefaultDistribution()
 }
 if (buildParams.inFipsJvm){

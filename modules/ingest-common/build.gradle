@@ -59,7 +59,7 @@ tasks.named("yamlRestTest").configure {
   ].join(',')
 }
 
-tasks.named("yamlRestTestV7CompatTest").configure {
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach {
   systemProperty 'tests.rest.blacklist', [
     // for some reason, allowed_warnings on the test isn't working here
     'ingest/30_date_processor/Test date processor with no timezone configured',

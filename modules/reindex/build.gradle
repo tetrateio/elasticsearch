@@ -184,7 +184,7 @@ tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { ta
     task.addAllowedWarningRegex("\\[types removal\\].*")
 }
 
-tasks.named("yamlRestTestV7CompatTest").configure {
+tasks.matching { it.name == "yamlRestTestV7CompatTest" }.configureEach {
   systemProperty 'tests.rest.blacklist', [
     'update_by_query/80_scripting/Can\'t change _id',
     'update_by_query/80_scripting/Set unsupported operation type',
