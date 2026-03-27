@@ -79,6 +79,11 @@ public abstract class AbstractYamlRestCompatTestPlugin implements Plugin<Project
     @Override
     public void apply(Project project) {
         project.getRootProject().getRootProject().getPlugins().apply(GlobalBuildInfoPlugin.class);
+        // Guard against Gradle 9.1+ lazy BuildService initialization: if buildParams are not yet
+        // available at configuration time (e.g. during docker image export), skip compat test setup.
+        if (!loadBuildParams(project).isPresent()) {
+            return;
+        }
         var buildParams = loadBuildParams(project).get();
 
         final Path compatRestResourcesDir = Path.of("restResources").resolve("v" + COMPATIBLE_VERSION);

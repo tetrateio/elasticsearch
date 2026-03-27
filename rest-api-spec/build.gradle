@@ -3,9 +3,7 @@ apply plugin: 'elasticsearch.publish'
 apply plugin: 'elasticsearch.rest-resources'
 apply plugin: 'elasticsearch.validate-rest-spec'
 apply plugin: 'elasticsearch.internal-yaml-rest-test'
-// NOTE: elasticsearch.yaml-rest-compat-test omitted — plugin fails at configuration time under
-// Gradle 9.1 with 'No value present' due to BuildParameterService lazy init ordering. This plugin
-// is only needed for running REST API backward-compatibility tests, not for building Docker images.
+apply plugin: 'elasticsearch.yaml-rest-compat-test'
 apply plugin: 'elasticsearch.internal-test-artifact'
 
 restResources {
@@ -43,9 +41,7 @@ dependencies {
   clusterModules project(':modules:data-streams')
 }
 
-// yamlRestTestV7CompatTransform task is created by elasticsearch.yaml-rest-compat-test plugin
-// which is not applied above. These configurations are no-ops when building Docker images.
-tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
+tasks.named("yamlRestTestV7CompatTransform").configure { task ->
 
   task.skipTestsByFilePattern("**/cat*/*.yml", "Cat API are meant to be consumed by humans, so will not be supported by Compatible REST API")
   task.skipTestsByFilePattern("**/indices.upgrade/*.yml", "upgrade api will only get a dummy endpoint returning an exception suggesting to use _reindex")
@@ -249,7 +245,7 @@ tasks.named("precommit").configure {
   dependsOn 'enforceYamlTestConvention'
 }
 
-tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach({ task ->
+tasks.named("yamlRestTestV7CompatTransform").configure({ task ->
   task.skipTest("indices.sort/10_basic/Index Sort", "warning does not exist for compatibility")
   task.skipTest("search/330_fetch_fields/Test search rewrite", "warning does not exist for compatibility")
   task.skipTest("tsdb/20_mapping/stored source is supported", "no longer serialize source_mode")
