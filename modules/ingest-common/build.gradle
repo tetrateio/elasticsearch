@@ -67,6 +67,6 @@ tasks.named("yamlRestTestV7CompatTest").configure {
   ].join(',')
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
   task.addAllowedWarningRegex("\\[types removal\\].*")
 }

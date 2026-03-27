@@ -39,7 +39,7 @@ tasks.named("yamlRestTest").configure { task->
   }
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
   task.skipTest("indices.analyze/10_analyze/htmlStrip_deprecated", "Cleanup versioned deprecations in analysis #41560")
   task.skipTest("analysis-common/40_token_filters/delimited_payload_filter_error", "Remove preconfigured delimited_payload_filter #43686")
   task.skipTest("analysis-common/20_analyzers/standard_html_strip", "Cleanup versioned deprecations in analysis #41560")

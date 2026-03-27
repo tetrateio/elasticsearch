@@ -25,6 +25,6 @@ dependencies {
   clusterModules project(':modules:lang-mustache')
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure({ task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach({ task ->
   task.skipTest("rank_eval/30_failures/Response format", "warning does not exist for compatibility")
 })

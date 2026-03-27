@@ -37,6 +37,6 @@ if (buildParams.inFipsJvm){
   tasks.named("yamlRestTest").configure{enabled = false }
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
   task.skipTest("rollup/10_basic/Rollup index", "Downsample for TSDB changed the configuration")
 }

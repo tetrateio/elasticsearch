@@ -166,7 +166,7 @@ if (OS.current() == OS.WINDOWS) {
   }
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
     task.skipTest("reindex/20_validation/reindex without source gives useful error message", "exception with a type. Not much benefit adding _doc there.")
     task.skipTest("update_by_query/20_validation/update_by_query without source gives useful error message", "exception with a type. Not much benefit adding _doc there.")
 

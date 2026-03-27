@@ -83,7 +83,7 @@ tasks.named("yamlRestTestV7CompatTest").configure {
   ].join(',')
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
   task.skipTest(
     "vectors/10_dense_vector_basic/Deprecated function signature",
     "to support it, it would require to almost revert back the #48725 and complicate the code"
@@ -199,7 +199,7 @@ tasks.named("precommit").configure {
   dependsOn 'enforceYamlTestConvention', 'enforceApiSpecsConvention'
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure({ task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach({ task ->
   task.skipTest("security/10_forbidden/Test bulk response with invalid credentials", "warning does not exist for compatibility")
   task.skipTest("esql/60_usage/Basic ESQL usage output (telemetry)", "The telemetry output changed. We dropped a column. That's safe.")
   task.skipTest("inference/inference_crud/Test get all", "Assertions on number of inference models break due to default configs")

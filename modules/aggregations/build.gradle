@@ -37,7 +37,7 @@ if (buildParams.snapshotBuild == false) {
   }
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure { task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach { task ->
   task.skipTest("search.aggregation/20_terms/string profiler via global ordinals filters implementation", "The profiler results aren't backwards compatible.")
   task.skipTest("search.aggregation/20_terms/string profiler via global ordinals native implementation", "The profiler results aren't backwards compatible.")
   task.skipTest("search.aggregation/20_terms/string profiler via map", "The profiler results aren't backwards compatible.")

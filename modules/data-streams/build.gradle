@@ -37,7 +37,7 @@ if (buildParams.inFipsJvm){
   tasks.named("yamlRestTest").configure{enabled = false }
 }
 
-tasks.named("yamlRestTestV7CompatTransform").configure({ task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach({ task ->
   task.skipTest("data_stream/10_basic/Create hidden data stream", "warning does not exist for compatibility")
 
   // Failure store configuration changed on 8.18 (earlier versions behind feature flag)

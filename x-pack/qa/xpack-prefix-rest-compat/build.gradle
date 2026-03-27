@@ -105,7 +105,7 @@ testClusters.configureEach {
 }
 
 // transform (again) the (already) transformed x-pack compatibility tests to test the xpack prefixes
-tasks.named("yamlRestTestV7CompatTransform").configure{ task ->
+tasks.matching { it.name == "yamlRestTestV7CompatTransform" }.configureEach{ task ->
 
   task.replaceKeyInDo("license.delete", "xpack-license.delete")
   task.replaceKeyInDo("license.get", "xpack-license.get")
