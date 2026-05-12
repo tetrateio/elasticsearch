@@ -719,7 +719,10 @@ public class TransportService extends AbstractLifecycleComponent
         }
 
         private static boolean isIncompatibleBuild(Version version, String buildHash) {
-            return version == Version.CURRENT && Build.current().hash().equals(buildHash) == false;
+            // Tetrate: wire-protocol compatibility is fully enforced by TransportVersion. The upstream
+            // hash check assumes same-version == same-binary, which does not hold for a fork that
+            // applies dependency patches without changing the version number. Disable it here.
+            return false;
         }
     }
 
