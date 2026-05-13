@@ -20,21 +20,21 @@ esplugin {
 }
 
 versions << [
-  'azureReactorNetty': '1.0.45',
+  'azureReactorNetty': '1.2.10',
 ]
 
 dependencies {
   // Microsoft
-  api "com.azure:azure-core-http-netty:1.15.3"
-  api "com.azure:azure-core:1.51.0"
-  api "com.azure:azure-identity:1.13.2"
-  api "com.azure:azure-json:1.2.0"
-  api "com.azure:azure-storage-blob:12.27.1"
-  api "com.azure:azure-storage-common:12.26.1"
-  api "com.azure:azure-storage-internal-avro:12.12.1"
-  api "com.azure:azure-xml:1.1.0"
+  api "com.azure:azure-core-http-netty:1.16.2"
+  api "com.azure:azure-core:1.57.0"
+  api "com.azure:azure-identity:1.18.1"
+  api "com.azure:azure-json:1.5.0"
+  api "com.azure:azure-storage-blob:12.32.0"
+  api "com.azure:azure-storage-common:12.31.0"
+  api "com.azure:azure-storage-internal-avro:12.17.0"
+  api "com.azure:azure-xml:1.2.0"
   api "com.microsoft.azure:msal4j-persistence-extension:1.3.0"
-  api "com.microsoft.azure:msal4j:1.16.2"
+  api "com.microsoft.azure:msal4j:1.23.1"
 
   // Jackson
   api "com.fasterxml.jackson.core:jackson-core:${versions.jackson}"
@@ -54,7 +54,7 @@ dependencies {
   // Reactor
   api "io.projectreactor.netty:reactor-netty-core:${versions.azureReactorNetty}"
   api "io.projectreactor.netty:reactor-netty-http:${versions.azureReactorNetty}"
-  api "io.projectreactor:reactor-core:3.4.38"
+  api "io.projectreactor:reactor-core:3.7.11"
   api "org.reactivestreams:reactive-streams:${versions.reactive_streams}"
 
   // Others
@@ -65,7 +65,7 @@ dependencies {
   api("com.nimbusds:nimbus-jose-jwt:10.0.2"){
     exclude group: 'com.google.crypto.tink', module: 'tink' // it's an optional dependency on which we don't rely
   }
-  api("com.nimbusds:oauth2-oidc-sdk:11.22.2"){
+  api("com.nimbusds:oauth2-oidc-sdk:11.23"){
     exclude group: 'com.google.crypto.tink', module: 'tink' // it's an optional dependency on which we don't rely
   }
   api "jakarta.activation:jakarta.activation-api:1.2.1"
@@ -77,7 +77,7 @@ dependencies {
   api "org.codehaus.woodstox:stax2-api:4.2.2"
   api "org.ow2.asm:asm:9.9"
 
-  runtimeOnly "com.google.code.gson:gson:2.11.0"
+  runtimeOnly "com.google.code.gson:gson:2.13.1"
   runtimeOnly "org.cryptomator:siv-mode:1.5.2"
 
   implementation project(":modules:transport-netty4")
