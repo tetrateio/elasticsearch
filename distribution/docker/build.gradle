@@ -134,7 +134,7 @@ dependencies {
   metricbeat_fips_x86_64 "beats:metricbeat-fips:${VersionProperties.elasticsearch}:linux-x86_64@tar.gz"
 
   // FIPS 140-2 libraries (default)
-  fips "org.bouncycastle:bc-fips:1.0.2.6"
+  fips "org.bouncycastle:bc-fips:1.0.2.7"
   fips "org.bouncycastle:bctls-fips:1.0.19"
 
   // FIPS 140-3 libraries

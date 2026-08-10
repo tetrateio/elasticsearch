@@ -51,7 +51,7 @@ if (buildParams.inFipsJvm) {
       }
     } else {
       // FIPS 140-2 certified BouncyCastle libraries (default)
-      bcFips = dependencies.create('org.bouncycastle:bc-fips:1.0.2.6')
+      bcFips = dependencies.create('org.bouncycastle:bc-fips:1.0.2.7')
       bcTlsFips = dependencies.create('org.bouncycastle:bctls-fips:1.0.19')
       bcUtilFips = null
       bcPkixFips = dependencies.create('org.bouncycastle:bcpkix-fips:1.0.7')

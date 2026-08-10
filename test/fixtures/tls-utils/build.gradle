@@ -23,7 +23,7 @@ dependencies {
       compileOnly 'org.bouncycastle:bcutil-fips:2.0.5'
       compileOnly 'org.bouncycastle:bcpkix-fips:2.0.7'
     } else {
-      compileOnly 'org.bouncycastle:bc-fips:1.0.2.6'
+      compileOnly 'org.bouncycastle:bc-fips:1.0.2.7'
       compileOnly 'org.bouncycastle:bctls-fips:1.0.19'
       compileOnly 'org.bouncycastle:bcpkix-fips:1.0.7'
     }
