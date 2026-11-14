@@ -54,8 +54,8 @@ dependencies {
   api "org.apache.httpcomponents:httpasyncclient:${versions.httpasyncclient}"
   api "org.apache.httpcomponents:httpcore-nio:${versions.httpcore}"
   api "org.apache.httpcomponents:httpclient-cache:${versions.httpclient}"
-  runtimeOnly 'com.google.guava:guava:32.0.1-jre'
-  runtimeOnly 'com.google.guava:failureaccess:1.0.1'
+  runtimeOnly 'com.google.guava:guava:33.7.2-jre'
+  runtimeOnly 'com.google.guava:failureaccess:1.0.3'
   runtimeOnly "commons-codec:commons-codec:${versions.commonscodec}"
 
   testImplementation "org.elasticsearch:mocksocket:${versions.mocksocket}"
