@@ -90,9 +90,9 @@ dependencies {
   api "com.nimbusds:lang-tag:1.7"
   api "com.sun.mail:jakarta.mail:1.6.8"
   api "net.jcip:jcip-annotations:1.0"
-  api "net.minidev:json-smart:2.5.2"
-  api "net.minidev:accessors-smart:2.5.2"
-  api "org.ow2.asm:asm:9.9"
+  api "net.minidev:json-smart:2.6.1"
+  api "net.minidev:accessors-smart:2.6.1"
+  api "org.ow2.asm:asm:9.11"
 
   testImplementation "org.elasticsearch:mocksocket:${versions.mocksocket}"
 
