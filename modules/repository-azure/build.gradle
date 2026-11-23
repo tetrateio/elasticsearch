@@ -72,10 +72,10 @@ dependencies {
   api "jakarta.xml.bind:jakarta.xml.bind-api:2.3.3"
   api "net.java.dev.jna:jna-platform:${versions.jna}" // Maven says 5.14.0 but this aligns with the Elasticsearch-wide version
   api "net.java.dev.jna:jna:${versions.jna}" // Maven says 5.14.0 but this aligns with the Elasticsearch-wide version
-  api "net.minidev:accessors-smart:2.5.2"
-  api "net.minidev:json-smart:2.5.2"
+  api "net.minidev:accessors-smart:2.6.1"
+  api "net.minidev:json-smart:2.6.1"
   api "org.codehaus.woodstox:stax2-api:4.2.2"
-  api "org.ow2.asm:asm:9.10.1"
+  api "org.ow2.asm:asm:9.11"
 
   runtimeOnly "com.google.code.gson:gson:2.13.1"
   runtimeOnly "org.cryptomator:siv-mode:1.5.2"
